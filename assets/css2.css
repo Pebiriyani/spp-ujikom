@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap");
+.text-center .image {
+  width: 120px;
+  margin-top: -10px;
+}
+
+.col-lg {
+  border: 0px solid black;
+  border-radius: 20px;
+  width: 80%;
+  background-color: white;
+}
+
+.small {
+  padding-top: 5px;
+  text-decoration: none;
+}
+
+.small a {
+  text-decoration: none;
+}
+
+.input-group-prepend i {
+  height: 10px;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #dddae4;
+}
+
+.navbar img {
+  width: 80px;
+}
+
+.navbar h1 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  margin-top: 15px;
+  color: black;
+}
+
+.navbar .collapse form {
+  margin-right: 3px;
+}
+
+.navbar .collapse form img {
+  width: 40px;
+}
+
+.navbar .collapse form h5 {
+  color: black;
+  padding-right: -20px;
+}
+
+.navbar .collapse form li {
+  margin-top: -15px;
+}
+
+.dropdown .btn {
+  background-color: none;
+}
+
+.dropdown .dropdown-menu {
+  width: 30px;
+}
+
+.main .prev a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.main .prev a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.main .prev .previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.main .prev .round {
+  border-radius: 50%;
+}
+/*# sourceMappingURL=css2.css.map */

@@ -37,7 +37,7 @@
         <img src="<?php echo base_url(); ?>assets/images/bpi.png">
         <h1>SMK BPI</h1>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="margin-right: 3%;">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             </ul>
             <form class="form-inline my-2 my-lg-0" style="margin-right: -10px;">
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <h5 class="mr-2 d-lg-inline"><?= $petugas['nama_petugas']; ?></h5>
-                        <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/images/user.png">
+
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -66,7 +66,7 @@
     <br>
     <div class="main" style="margin-top: 6%;">
         <div class="prev">
-            <a href="javascript:window.history.go(-1);" class="previous round">&laquo;</a>
+            <a href="javascript:window.history.back();" class="previous round">&laquo;</a>
         </div>
     </div>
 
@@ -76,9 +76,9 @@
     <div class=" row" style="margin-top: 30px;margin-left:2%;margin-right:2%;">
         <div class="col">
             <div class="card-group">
-                <div class="card">
-                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/user.png" alt="Card image cap"
-                        style=" height:240px">
+                <div class="card" style="border: none;">
+                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/<?= $siswa['gambar'] ?>"
+                        alt="Card image cap" style=" height:240px;width:60%;margin-left:140px">
                 </div>
                 <div class="card" style=" height:240px">
 
@@ -116,11 +116,8 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Rp.</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-                                name="jumlah_bayar" value="<?= set_value('jumlah_bayar'); ?>">
+                            <input type="hidden" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                name="jumlah_bayar" value="<?= $spp['nominal'] ?>">
 
                         </div>
                         <input type="hidden" name="tgl_bayar" value="<?php date_default_timezone_set('Asia/Jakarta');
@@ -133,6 +130,7 @@
 
     </div>
     <br>
+
 
 
 

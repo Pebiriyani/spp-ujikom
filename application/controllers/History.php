@@ -17,18 +17,20 @@ class History extends CI_Controller
         $data['admin'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->library('pagination');
-        $config['base_url'] = "http://localhost/spp/history/index";
+        $config['base_url'] = "http://localhost/spp/data_kelas/index";
 
+
+        $this->db->like('kompetensi_keahlian');
+        $this->db->from('kelas');
         $config['total_rows'] = $this->db->count_all_results();
-        $config['per_page'] = 6;
+        $config['per_page'] = 10;
 
 
         $this->pagination->initialize($config);
 
         $data['start'] = $this->uri->segment(3);
-        $data['history'] = $this->M_data->getDatapembayaran($config['per_page'], $data['start']);
-
-        $data['title'] = 'history';
+        $data['history'] = $this->M_data->get_pembayaran($config['per_page'], $data['start']);
+        $data['title'] = 'History';
         $this->load->view('main/admin/header', $data);
         $this->load->view('main/admin/history', $data);
         $this->load->view('main/admin/footer', $data);

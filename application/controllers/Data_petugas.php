@@ -54,7 +54,6 @@ class Data_petugas extends CI_Controller
 
         $this->form_validation->set_rules('username', 'username', 'required|trim');
         $this->form_validation->set_rules('nama_petugas', 'nama petugas', 'required|trim');
-        $this->form_validation->set_rules('level', 'level', 'required|trim');
 
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
 
@@ -70,7 +69,7 @@ class Data_petugas extends CI_Controller
                 'username' => htmlspecialchars($this->input->post('username', TRUE)),
                 'nama_petugas' => htmlspecialchars($this->input->post('nama_petugas', TRUE)),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'level' => htmlspecialchars($this->input->post('level', TRUE)),
+                'level' => 'petugas',
 
             ];
 
@@ -84,12 +83,13 @@ class Data_petugas extends CI_Controller
     public function editDataPetugas($id_petugas)
     {
         $data['admin'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
-        $data['petugas'] = $this->M_data->getsiswabyidpetugas($id_petugas);
+        $data['petugas'] = $this->M_data->getbyidpetugas($id_petugas);
         $this->form_validation->set_rules('username', 'username', 'required|trim');
         $this->form_validation->set_rules('nama_petugas', 'nama petugas', 'required|trim');
         $this->form_validation->set_rules('level', 'level', 'required|trim');
 
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'edit petugas';
             $this->load->view('main/admin/header', $data);
             $this->load->view('main/admin/editpetugas', $data);
             $this->load->view('main/admin/footer', $data);

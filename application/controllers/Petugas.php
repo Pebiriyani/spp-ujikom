@@ -27,7 +27,7 @@ class Petugas extends CI_Controller
         $this->db->like('nama', $data['keyword']);
         $this->db->from('siswa');
         $config['total_rows'] = $this->db->count_all_results();
-        $config['per_page'] = 6;
+        $config['per_page'] = 9;
 
 
         $this->pagination->initialize($config);
@@ -41,6 +41,8 @@ class Petugas extends CI_Controller
         $data['petugas'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->M_data->getsiswabynisn($nisn);
         $data['pembayaran'] = $this->M_data->getpembayaran($nisn);
+        $idspp = $this->M_data->getsiswabynisn($nisn);
+        $data['spp'] = $this->M_data->getnominal($idspp['id_spp']);
 
         $data['bulan'] = ['juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember', 'januari', 'februari', 'maret', 'april', 'mei',];
         $this->load->view('main/bayar_spp', $data);
@@ -48,11 +50,13 @@ class Petugas extends CI_Controller
 
     public function tambah_pembayaran($nisn)
     {
-        $data['petugas'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('riyani')])->row_array();
-
+        $data['petugas'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->M_data->getsiswabynisn($nisn);
         $data['pembayaran'] = $this->M_data->getpembayaran($nisn);
         $data['bulan'] = ['juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember', 'januari', 'februari', 'maret', 'april', 'mei',];
+        $data['tahun'] = ['2019', '2020', '2021'];
+        $idspp = $this->M_data->getsiswabynisn($nisn);
+        $data['spp'] = $this->M_data->getnominal($idspp['id_spp']);
         $this->form_validation->set_rules('tahun_dibayar', 'tahun', 'required|trim');
         $this->form_validation->set_rules('bulan_dibayar', 'bulan', 'required|trim');
         $this->form_validation->set_rules('jumlah_bayar', 'jumlah bayar', 'required|trim');
@@ -65,25 +69,34 @@ class Petugas extends CI_Controller
           </div>');
             $this->load->view('main/bayar_spp', $data);
         } else {
-            $data2['petugas'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
-            $data2['siswa'] = $this->M_data->getsiswabynisn($nisn);
-            $data2['pembayaran'] = $this->M_data->getpembayaran($nisn);
-            $data2['bulan'] = ['juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember', 'januari', 'februari', 'maret', 'april', 'mei',];
-            $ptgs = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
-            $data = [
-                'tahun_dibayar' => htmlspecialchars($this->input->post('tahun_dibayar', TRUE)),
-                'bulan_dibayar' => htmlspecialchars($this->input->post('bulan_dibayar', TRUE)),
-                'jumlah_bayar' => htmlspecialchars($this->input->post('jumlah_bayar', TRUE)),
-                'tgl_bayar' => htmlspecialchars($this->input->post('tgl_bayar', TRUE)),
-                'id_petugas' => $ptgs['id_petugas'],
-                'id_spp' => 1,
-                'nisn' => $nisn
-            ];
-            $this->db->insert('pembayaran', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            pembayaran berhasil
-          </div>');
-            $this->load->view('main/bayar_spp', $data2);
+            $nisn = $nisn;
+            $bulan = $this->input->post('bulan_dibayar');
+            $tahun = $this->input->post('tahun_dibayar');
+            if ($this->M_data->pembayarancek($nisn, $bulan, $tahun)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                spp sudah dibayar
+            </div>');
+                $this->load->view('main/bayar_spp', $data);
+            } else {
+                $ptgs = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
+                $id = $this->uri->segment(3);
+                $spp = $this->db->get_where('siswa', ['nisn' => $id])->row_array();
+
+                $data2 = [
+                    'tahun_dibayar' => htmlspecialchars($this->input->post('tahun_dibayar', TRUE)),
+                    'bulan_dibayar' => htmlspecialchars($this->input->post('bulan_dibayar', TRUE)),
+                    'jumlah_bayar' => htmlspecialchars($this->input->post('jumlah_bayar', TRUE)),
+                    'tgl_bayar' => htmlspecialchars($this->input->post('tgl_bayar', TRUE)),
+                    'id_petugas' => $ptgs['id_petugas'],
+                    'id_spp' => $spp['id_spp'],
+                    'nisn' => $nisn
+                ];
+                $this->db->insert('pembayaran', $data2);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                pembayaran berhasil
+            </div>');
+                $this->load->view('main/bayar_spp', $data);
+            }
         }
     }
 }

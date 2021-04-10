@@ -37,7 +37,7 @@
         <img src="<?php echo base_url(); ?>assets/images/bpi.png">
         <h1>SMK BPI</h1>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="margin-right: 3%;">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             </ul>
             <form class="form-inline my-2 my-lg-0" style="margin-right: -10px;">
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <h5 class="mr-2 d-lg-inline"><?= $user['nama']; ?></h5>
-                        <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/images/user.png">
+
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

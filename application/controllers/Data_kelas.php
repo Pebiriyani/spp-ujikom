@@ -80,7 +80,7 @@ class Data_kelas extends CI_Controller
     public function editDataKelas($id_kelas)
     {
         $data['admin'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
-        $data['kelas'] = $this->M_data->getsiswabyidkelas($id_kelas);
+        $data['kelas'] = $this->M_data->getbyidkelas($id_kelas);
         $data['nama_kelas'] = ['X', 'XI', 'XII'];
         $data['jurusan'] = ['Rekayasa Perangkat Lunak', 'teknik komputer jaringan', 'administrasi perkantoran'];
 
@@ -88,6 +88,7 @@ class Data_kelas extends CI_Controller
         $this->form_validation->set_rules('kompetensi_keahlian', 'kompetensi keahlian', 'required|trim');
 
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'edit kelas';
             $this->load->view('main/admin/header', $data);
             $this->load->view('main/admin/editkelas', $data);
             $this->load->view('main/admin/footer', $data);

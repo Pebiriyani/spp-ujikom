@@ -24,6 +24,8 @@
     </script>
     <link href="<?php echo base_url(); ?>assets/css1.css" rel="stylesheet" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
 
 </head>
 
@@ -36,7 +38,7 @@
 
 
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="margin-right: 3%;">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             </ul>
             <form class="form-inline my-2 my-lg-0" style="margin-right: -10px;">
@@ -44,7 +46,7 @@
                     <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <h5 class="mr-2 d-lg-inline"><?= $admin['nama_petugas']; ?></h5>
-                        <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/images/user.png">
+
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -84,16 +86,10 @@
             <i class="fa fa-table" aria-hidden="true"></i>
             <span>Data Spp</span></a>
         <hr>
-        <a href="<?= base_url('admin/data_pembayaran'); ?>">
-            <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-            <span>Entri Pembayaran</span></a>
 
-        <hr>
         <a href="<?= base_url('admin/history'); ?>">
             <i class="fa fa-history" aria-hidden="true"></i>
             <span> History</span></a>
         <hr>
-        <a href="<?= base_url('admin/laporan'); ?>">
-            <i class="fa fa-file" aria-hidden="true"></i>
-            <span> Laporan</span></a>
+
     </div>

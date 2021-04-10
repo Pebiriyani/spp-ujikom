@@ -62,10 +62,7 @@
                                     <small class=" text-danger"><?= form_error('password'); ?></small>
                                 </div>
 
-                                <div class="small">
-                                    <a href="<?= base_url('main/register'); ?>">Lupa
-                                        Password</a>
-                                </div>
+
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <button class="btn btn-primary" type="submit">Login</button>
                                 </div>

@@ -17,10 +17,4 @@ class User extends CI_Controller
         $data['siswa'] = $this->M_data->select_pembayaran()->result();
         $this->load->view('main/user', $data);
     }
-    public function profile()
-    {
-        $data['user'] = $this->db->get_where('siswa', ['nama' => $this->session->userdata('nama')])->row_array();
-        $data['kelas'] = $this->M_data->select_kelas()->result();
-        $this->load->view('main/profile', $data);
-    }
 }

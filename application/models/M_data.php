@@ -7,9 +7,7 @@ class M_data extends CI_model
     }
     function select_pembayaran()
     {
-        $sql = $this->db->query("select *from pembayaran");
-
-        return $sql;
+        return $this->db->get_where('pembayaran', ['nisn' => $this->session->userdata('nisn')]);
     }
     function select_siswa()
     {
@@ -39,11 +37,11 @@ class M_data extends CI_model
     {
         return $this->db->get_where('siswa', ['nisn' => $nisn])->row_array();
     }
-    public function getsiswabyidpetugas($id_petugas)
+    public function getbyidpetugas($id_petugas)
     {
         return $this->db->get_where('petugas', ['id_petugas' => $id_petugas])->row_array();
     }
-    public function getsiswabyidkelas($id_kelas)
+    public function getbyidkelas($id_kelas)
     {
         return $this->db->get_where('kelas', ['id_kelas' => $id_kelas])->row_array();
     }
@@ -53,6 +51,7 @@ class M_data extends CI_model
     }
     public function getpembayaran($nisn)
     {
+
         $query = $this->db->get_where('pembayaran', ['nisn' => $nisn])->result_array();
         return $query;
     }
@@ -84,11 +83,16 @@ class M_data extends CI_model
     public function getDatapembayaran($limit, $start, $keyword = null)
     {
         if ($keyword) {
-            $this->db->like('nisn', $keyword);
+            $this->db->like('nama', $keyword);
         }
 
         $query = $this->db->get('siswa', $limit, $start)->result_array();
         return $query;
+    }
+    public function get_pembayaran($limit, $start)
+    {
+
+        return $this->db->get('pembayaran', $limit, $start)->result_array();
     }
     public function getDataspp($limit, $start, $keyword = null)
     {
@@ -156,5 +160,31 @@ class M_data extends CI_model
         $array = array('siswa.nisn' => $nisn, 'pembayaran.bulan_dibayar' => $bulan, 'pembayaran.tahun_dibayar' => $tahun);
         $this->db->where($array);
         return $this->db->get()->num_rows();
+    }
+
+    public function pembayarancek($nisn, $bulan, $tahun)
+    {
+        $array = array('nisn' => $nisn, 'bulan_dibayar' => $bulan, 'tahun_dibayar' => $tahun);
+
+        $this->db->where($array);
+
+        $query = $this->db->get('pembayaran', $nisn, $bulan, $tahun);
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getnominal($idspp)
+    {
+        return $this->db->get_where('spp', ['id_spp' => $idspp])->row_array();
+    }
+    public function getnom($nisn)
+    {
+        return $this->db->get_where('siswa', ['nisn' => $nisn])->row_array();
+    }
+    public function getupdatespp()
+    {
+        return $this->db->get('tb_updt_nominal')->result_array();
     }
 }

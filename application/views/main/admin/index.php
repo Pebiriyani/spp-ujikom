@@ -48,6 +48,11 @@
                         class="badge badge-primary ">edit</a>
                     <a href="<?= base_url('admin/hapusDataSiswa/'); ?><?= $s['nisn']; ?>" class="badge badge-danger"
                         onclick="return confirm('hapus data siswa?');">hapus</a>
+                    <a href="<?= base_url('admin/laporan/'); ?><?= $s['nisn']; ?>"
+                        class="badge badge-primary ">laporan</a>
+                    <a href="<?= base_url('admin/pembayaran/'); ?><?= $s['nisn']; ?>" class="badge badge-primary ">Bayar
+                        Spp</a>
+
                 </td>
             </tr>
         </tbody>
@@ -75,46 +80,49 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <input type="number" class="form-control" id="inputnisn" placeholder="NISN" name="nisn"
-                            value="<?= set_value('nisn'); ?>">
+                            value="<?= set_value('nisn'); ?>" required>
                         <small class="text-danger pl-3"> <?= form_error('nisn') ?> </small>
                     </div>
                     <div class="form-group col-md-6">
                         <input type="text" class="form-control" id="inputnis" placeholder="NIS" name="nis"
-                            value="<?= set_value('nis'); ?>">
+                            value="<?= set_value('nis'); ?>" required>
                         <?= form_error('nis', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="inputAddress" placeholder="Nama" name="nama"
-                        value="<?= set_value('nama'); ?>">
+                        value="<?= set_value('nama'); ?>" required>
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
                 <div class="form-group">
                     <textarea type="text" class="form-control" id="inputAddress2" placeholder="Alamat" name="alamat"
-                        value="<?= set_value('alamat'); ?>"></textarea>
+                        value="<?= set_value('alamat'); ?>" required></textarea>
                     <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
                 <div class="form-group">
                     <input type="number" class="form-control" id="inputAddress2" placeholder="No telp" name="no_telp"
-                        value="<?= set_value('no_telp'); ?>">
+                        value="<?= set_value('no_telp'); ?>" required>
                     <?= form_error('no_telp', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
+                <div class="form-group">
+                    <label style="color: grey;margin-left:10px">gambar</label>
+                    <input type="file" class="form-control" id="inputAddress2" name="userfile" size="20" required>
+                </div>
                 <div class="form-row">
-
                     <div class="form-group col-md-4">
-                        <label for="inputState">id kelas</label>
                         <input type="number" class="form-control" id="inputZip" name="id_kelas"
-                            value="<?= set_value('id_kelas'); ?>">
+                            value="<?= set_value('id_kelas'); ?>" placeholder="id kelas" required>
                         <?= form_error('id_kelas', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="inputZip">id spp</label>
                         <input type="number" class="form-control" id="inputZip" name="id_spp"
-                            value="<?= set_value('id_spp'); ?>">
+                            value="<?= set_value('id_spp'); ?>" placeholder="id spp" required>
                         <?= form_error('id_spp', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                 </div>
             </div>
+
+
             <div class="modal-footer">
                 <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>

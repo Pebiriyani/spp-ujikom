@@ -12,8 +12,12 @@
             </form>
         </div>
     </div>
+    <a href="<?= base_url('data_spp/laporan/'); ?>" class="tambah btn btn-secondary btn-lg"
+        style="margin-right: 9%;">Laporan update spp</a>
     <button type="submit" class="tambah btn btn-secondary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
         Tambah spp</button>
+
+
     <?= $this->session->flashdata('message'); ?>
     <table class="table">
         <thead>

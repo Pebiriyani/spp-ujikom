@@ -1,44 +1,35 @@
-<div class="main">
-    <div class="row">
-        <div class="col-md-4">
-            <form action="<?= base_url('data_kelas') ?>" method="POST">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="cari tanggal.."
-                        aria-label="Recipient's username" name="keyword" autocomplete="off" autofocus>
-                    <div class="input-group-append">
-                        <input class="btn btn-primary" type="submit" id="button-addon2" name="submit">
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="main" style="margin-top: 6%;">
+    <div class="prev">
+        <a href="javascript:window.history.go(-1);" class="previous round">&laquo;</a>
     </div>
-    <table class="table">
+
+    <table class="table" style="margin-left:50px">
         <thead>
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">NISN</th>
-                <th scope="col">Nama siswa</th>
-                <th scope="col">Bulan bayar</th>
-                <th scope="col">Tahun bayar</th>
-                <th scope="col">Status</th>
+                <th scope="col">no</th>
+                <th scope="col">tahun</th>
+                <th scope="col">nominal lama</th>
+                <th scope="col">nominal baru</th>
+                <th scope="col">tanggal update</th>
+                <th></th>
+
             </tr>
         </thead>
-        <?php
-
-        foreach ($laporan as $l) :
-            ++$start;
-        ?>
         <tbody>
+            <?php
+
+            $i = 0;
+            foreach ($spp as $s) :
+                $i++;
+            ?>
             <tr>
-                <th scope="row"><?= $start ?></th>
-                <td><?= $l['nisn']; ?></td>
-                <td><?= $l['nama']; ?></td>
-                <td><?= $l['bulan'] ?></td>
-                <td><?= $l['tahun']; ?></td>
-                <td><?= $l['status']; ?></td>
+                <th scope="row"><?= $i ?></th>
+                <td><?= $s['tahun']; ?></td>
+                <td><?= $s['harga_lama']; ?></td>
+                <td><?= $s['harga_baru']; ?></td>
+                <td><?= $s['tgl_update']; ?></td>
 
             </tr>
-
         </tbody>
         <?php endforeach; ?>
     </table>

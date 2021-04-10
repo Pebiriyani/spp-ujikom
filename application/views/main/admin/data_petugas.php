@@ -82,12 +82,7 @@
 
                     </div>
                 </div>
-                <div class="form-group" style="margin-top: 10px;">
-                    <select class="form-control" id="exampleFormControlSelect1" name="level">
-                        <option value="admin">Admin</option>
-                        <option value="petugas">Petugas</option>
-                    </select>
-                </div>
+
 
             </div>
             <div class="modal-footer">

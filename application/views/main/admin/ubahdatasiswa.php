@@ -12,12 +12,12 @@
             <input type="hidden" name="nisn" value="<?= $siswa['nisn']; ?>">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label>NISN</label>
-                    <input type="number" class="form-control" id="inputnisn" placeholder="NISN" name="nisn"
+                    <!-- <label>NISN</label> -->
+                    <input type="hidden" class="form-control" id="inputnisn" placeholder="NISN" name="nisn"
                         value="<?= $siswa['nisn']; ?>" style="height: 40%;">
                     <?= form_error('nis', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" style="margin-left:-50%">
                     <label>NIS</label>
                     <input type="text" class="form-control" id="inputnis" placeholder="NIS" name="nis"
                         value="<?= $siswa['nis']; ?>" style="height: 40%;">

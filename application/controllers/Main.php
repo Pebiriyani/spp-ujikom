@@ -34,7 +34,7 @@ class Main extends CI_Controller
                     'nisn' => $user['nisn']
                 ];
                 $this->session->set_userdata($data);
-                redirect('user');
+                redirect('user', $data);
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">wrong nis!</div>');
                 redirect('main');

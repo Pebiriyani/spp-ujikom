@@ -85,6 +85,7 @@ class Data_spp extends CI_Controller
         $this->form_validation->set_rules('tahun', 'tahun', 'required|trim');
         $this->form_validation->set_rules('nominal', 'nominal', 'required|trim');
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'edit spp';
             $this->load->view('main/admin/header', $data);
             $this->load->view('main/admin/editspp', $data);
             $this->load->view('main/admin/footer', $data);
@@ -102,5 +103,15 @@ class Data_spp extends CI_Controller
           </div>');
             redirect('data_spp');
         }
+    }
+
+    public function laporan()
+    {
+        $data['admin'] = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
+        $data['spp'] = $this->M_data->getupdatespp();
+        $data['title'] = 'laporan';
+        $this->load->view('main/admin/header', $data);
+        $this->load->view('main/admin/laporan', $data);
+        $this->load->view('main/admin/footer', $data);
     }
 }
